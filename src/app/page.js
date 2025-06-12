@@ -5,8 +5,6 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 const TeamTrackrHero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 300], [0, -50]);
-  const y2 = useTransform(scrollY, [0, 300], [0, -100]);
 
   useEffect(() => {
     const updateMousePosition = (e) => {
@@ -22,13 +20,13 @@ const TeamTrackrHero = () => {
       opacity: 1,
       transition: {
         staggerChildren: 0.15,
-        delayChildren: 0.2
+        delayChildren: 0.3
       }
     }
   };
 
   const heroVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
@@ -40,11 +38,11 @@ const TeamTrackrHero = () => {
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 100, rotateX: 15 },
+    hidden: { opacity: 0, y: 50, scale: 0.9 },
     visible: {
       opacity: 1,
       y: 0,
-      rotateX: 0,
+      scale: 1,
       transition: {
         duration: 0.8,
         ease: [0.25, 0.46, 0.45, 0.94]
@@ -54,64 +52,102 @@ const TeamTrackrHero = () => {
 
   const features = [
     {
-      title: "Project Orchestration",
-      description: "Intelligent project management with AI-powered insights and predictive analytics",
+      title: "Project Management",
+      description: "AI-powered project orchestration with predictive analytics and smart resource allocation",
       icon: "🎯",
-      gradient: "from-violet-600 to-indigo-600",
-      delay: 0.1,
-      href: "https://project-managementt-tool.netlify.app/"
+      gradient: "from-violet-500 via-purple-500 to-violet-600",
+      href: "https://project-managementt-tool.netlify.app/",
+      accent: "violet"
     },
     {
       title: "Neural Chat",
-      description: "Next-generation team communication with smart threading and context awareness",
-      icon: "🧠",
-      gradient: "from-blue-600 to-cyan-600",
-      delay: 0.2,
-      href: "https://chatsphere-sg.netlify.app/"
+      description: "Next-generation team communication with intelligent threading and context awareness",
+      icon: "💬",
+      gradient: "from-blue-500 via-cyan-500 to-blue-600",
+      href: "https://chatsphere-sg.netlify.app/",
+      accent: "blue"
     },
     {
-      title: "Immersive Share",
-      description: "Ultra-high definition screen sharing with collaborative AR annotations",
+      title: "Smart Browser",
+      description: "Collaborative browsing with shared workspaces and synchronized navigation",
       icon: "🌐",
-      gradient: "from-emerald-600 to-teal-600",
-      delay: 0.3,
-      href: "https://team-trackr-sharing.vercel.app/"
+      gradient: "from-emerald-500 via-teal-500 to-emerald-600",
+      href: "https://browser-team-trackr.vercel.app/",
+      accent: "emerald"
+    },
+    {
+      title: "Screen Share",
+      description: "Ultra-HD sharing with AR collaborative annotations and real-time markup tools",
+      icon: "📱",
+      gradient: "from-orange-500 via-red-500 to-orange-600",
+      href: "https://team-trackr-sharing.vercel.app/",
+      accent: "orange"
     },
     {
       title: "Video Connect",
-      description: "Crystal-clear video conferencing with real-time collaboration and AI transcription",
+      description: "Crystal-clear conferencing with AI transcription and smart meeting insights",
       icon: "📹",
-      gradient: "from-pink-600 to-rose-600",
-      delay: 0.4,
-      href: "https://team-trackr-video.vercel.app/"
+      gradient: "from-pink-500 via-rose-500 to-pink-600",
+      href: "https://team-trackr-video.vercel.app/",
+      accent: "pink"
     }
   ];
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-indigo-50 relative overflow-hidden">
-      {/* Dynamic Background */}
-      <div className="absolute inset-0">
-        {/* Gradient Mesh */}
-        <div className="absolute inset-0 bg-gradient-to-br from-violet-100/40 via-blue-100/40 to-emerald-100/40" />
-        
-        {/* Animated Grid */}
-        <motion.div 
-          style={{ y: y1 }}
-          className="absolute inset-0 opacity-20"
-        >
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(99,102,241,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(99,102,241,0.1)_1px,transparent_1px)] bg-[size:50px_50px]" />
-        </motion.div>
+  const getAccentClasses = (accent) => {
+    const colors = {
+      violet: 'hover:border-violet-400/50 group-hover:shadow-violet-500/20',
+      blue: 'hover:border-blue-400/50 group-hover:shadow-blue-500/20',
+      emerald: 'hover:border-emerald-400/50 group-hover:shadow-emerald-500/20',
+      orange: 'hover:border-orange-400/50 group-hover:shadow-orange-500/20',
+      pink: 'hover:border-pink-400/50 group-hover:shadow-pink-500/20'
+    };
+    return colors[accent] || colors.violet;
+  };
 
-        {/* Floating Orbs */}
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 relative overflow-hidden">
+      {/* Enhanced Background */}
+      <div className="absolute inset-0">
+        {/* Primary Gradient Mesh */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_800px_600px_at_50%_200px,rgba(120,119,198,0.05),transparent)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_600px_400px_at_80%_400px,rgba(59,130,246,0.04),transparent)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_400px_300px_at_20%_600px,rgba(16,185,129,0.03),transparent)]" />
+        
+        {/* Floating Particles */}
+        <div className="absolute inset-0">
+          {[...Array(12)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1.5 h-1.5 bg-gradient-to-r from-slate-300 to-slate-400 rounded-full"
+              style={{
+                left: `${10 + (Math.random() * 80)}%`,
+                top: `${10 + (Math.random() * 80)}%`,
+              }}
+              animate={{
+                y: [0, -40, 0],
+                opacity: [0.2, 0.8, 0.2],
+                scale: [1, 1.5, 1],
+              }}
+              transition={{
+                duration: 4 + Math.random() * 3,
+                repeat: Infinity,
+                delay: Math.random() * 3,
+                ease: "easeInOut"
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Interactive Orbs */}
         <motion.div
           style={{
-            x: mousePosition.x * 0.02,
-            y: mousePosition.y * 0.02,
+            x: mousePosition.x * 0.01,
+            y: mousePosition.y * 0.01,
           }}
-          className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-r from-violet-300/40 to-purple-300/40 rounded-full blur-3xl"
+          className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-r from-violet-200/20 to-purple-200/20 rounded-full blur-3xl"
           animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.4, 0.7, 0.4],
+            scale: [1, 1.1, 1],
+            opacity: [0.3, 0.5, 0.3],
           }}
           transition={{
             duration: 8,
@@ -122,56 +158,19 @@ const TeamTrackrHero = () => {
         
         <motion.div
           style={{
-            x: mousePosition.x * -0.03,
-            y: mousePosition.y * -0.03,
+            x: mousePosition.x * -0.008,
+            y: mousePosition.y * -0.008,
           }}
-          className="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-r from-blue-300/40 to-cyan-300/40 rounded-full blur-3xl"
+          className="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-r from-blue-200/20 to-cyan-200/20 rounded-full blur-3xl"
           animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.5, 0.8, 0.5],
+            scale: [1.1, 1, 1.1],
+            opacity: [0.4, 0.6, 0.4],
           }}
           transition={{
             duration: 6,
             repeat: Infinity,
             ease: "easeInOut",
             delay: 2
-          }}
-        />
-
-        <motion.div
-          style={{
-            x: mousePosition.x * 0.015,
-            y: mousePosition.y * 0.015,
-          }}
-          className="absolute top-1/2 left-1/2 w-72 h-72 bg-gradient-to-r from-emerald-300/30 to-teal-300/30 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.3, 0.6, 0.3],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 4
-          }}
-        />
-
-        {/* Additional floating orb for the new feature */}
-        <motion.div
-          style={{
-            x: mousePosition.x * -0.02,
-            y: mousePosition.y * 0.025,
-          }}
-          className="absolute top-40 right-40 w-64 h-64 bg-gradient-to-r from-pink-300/30 to-rose-300/30 rounded-full blur-3xl"
-          animate={{
-            scale: [1.1, 1, 1.1],
-            opacity: [0.4, 0.7, 0.4],
-          }}
-          transition={{
-            duration: 7,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1
           }}
         />
       </div>
@@ -181,63 +180,90 @@ const TeamTrackrHero = () => {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative z-10 px-6 py-12"
+        className="relative z-10 min-h-screen"
       >
-        {/* Navigation */}
-        <motion.nav
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="flex justify-center items-center max-w-7xl mx-auto mb-20"
-        >
-          <div className="text-2xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
-            TeamTrackr
-          </div>
-        </motion.nav>
-
         {/* Hero Section */}
-        <div className="max-w-7xl mx-auto">
+        <div className="pt-16 pb-24 px-6">
           <motion.div
             variants={heroVariants}
-            className="text-center mb-32"
+            className="text-center max-w-5xl mx-auto"
           >
+            {/* Brand Logo */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.3 }}
-              className="inline-flex items-center px-4 py-2 bg-white/60 backdrop-blur-sm border border-slate-200/50 rounded-full mb-8"
+              transition={{ duration: 1.2, delay: 0.2 }}
+              className="mb-12"
             >
-              <div className="w-2 h-2 bg-emerald-500 rounded-full mr-2 animate-pulse" />
-              <span className="text-sm text-slate-600">Now with AI-powered insights</span>
+              <h1 className="text-7xl lg:text-9xl font-black mb-6 tracking-tight">
+                <span className="bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 bg-clip-text text-transparent drop-shadow-sm">
+                  TeamTrackr
+                </span>
+              </h1>
+              <motion.div 
+                initial={{ width: 0 }}
+                animate={{ width: "8rem" }}
+                transition={{ duration: 1, delay: 1 }}
+                className="h-1.5 bg-gradient-to-r from-violet-500 via-purple-500 to-violet-600 mx-auto rounded-full shadow-lg"
+              />
             </motion.div>
 
-            <motion.h1
-              variants={heroVariants}
-              className="text-6xl md:text-8xl lg:text-9xl font-bold mb-8 leading-none"
+            {/* Tagline */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.8 }}
+              className="mb-16 space-y-6"
             >
-              <span className="bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 bg-clip-text text-transparent">
-                The Future of
-              </span>
-              <br />
-              <span className="bg-gradient-to-r from-violet-600 via-blue-600 to-emerald-600 bg-clip-text text-transparent">
-                Collaboration
-              </span>
-            </motion.h1>
+              <h2 className="text-4xl lg:text-5xl font-bold text-slate-800 mb-8 leading-tight">
+                Where Innovation Meets
+                <span className="bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent"> Collaboration</span>
+              </h2>
+              <p className="text-xl lg:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-light">
+                Experience the future of teamwork with our intelligent suite of tools 
+                that evolve with your workflow and unleash your team's true potential through cutting-edge technology.
+              </p>
+            </motion.div>
 
-            <motion.p
-              variants={heroVariants}
-              className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto mb-12 leading-relaxed"
+            {/* Status Indicators */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.2 }}
+              className="flex flex-wrap justify-center gap-6 mb-20"
             >
-              Experience the next evolution of teamwork with our intelligent suite of tools 
-              that adapt to your workflow and amplify your team's potential.
-            </motion.p>
+              {[
+                { label: "AI-Powered", color: "emerald" },
+                { label: "Real-time Sync", color: "blue" },
+                { label: "Enterprise Security", color: "violet" },
+                { label: "Cloud Native", color: "orange" }
+              ].map((badge, i) => (
+                <div key={i} className="flex items-center px-6 py-3 bg-white/60 backdrop-blur-xl border border-slate-200/50 rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
+                  <div className={`w-2.5 h-2.5 bg-${badge.color}-500 rounded-full mr-3 animate-pulse`} />
+                  <span className="text-slate-700 font-medium text-sm">{badge.label}</span>
+                </div>
+              ))}
+            </motion.div>
+          </motion.div>
+        </div>
+
+        {/* Features Grid */}
+        <div className="px-6 pb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 1.5 }}
+            className="text-center mb-16"
+          >
+            <h3 className="text-3xl lg:text-4xl font-bold text-slate-800 mb-4">
+              Complete Productivity Ecosystem
+            </h3>
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+              Five powerful applications working in perfect harmony to transform how your team collaborates
+            </p>
           </motion.div>
 
-          {/* Feature Cards */}
-          <motion.div
-            variants={containerVariants}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
-          >
+          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
             {features.map((feature, index) => (
               <motion.a
                 key={index}
@@ -246,53 +272,79 @@ const TeamTrackrHero = () => {
                 rel="noopener noreferrer"
                 variants={cardVariants}
                 whileHover={{
-                  y: -20,
-                  rotateX: 5,
-                  rotateY: 5,
-                  transition: { duration: 0.3 }
+                  y: -12,
+                  scale: 1.02,
+                  transition: { duration: 0.3, ease: "easeOut" }
                 }}
-                style={{ y: y2 }}
-                className="group relative p-8 bg-white/70 backdrop-blur-xl border border-white/30 rounded-3xl hover:border-white/50 hover:shadow-2xl transition-all duration-500 cursor-pointer perspective-1000"
+                className={`group block ${index === 2 ? 'md:col-span-2 lg:col-span-1' : ''}`}
               >
-                {/* Card Glow Effect */}
-                <div className={`absolute inset-0 bg-gradient-to-r ${feature.gradient} opacity-0 group-hover:opacity-10 rounded-3xl blur-xl transition-all duration-500`} />
-                
-                {/* Content */}
-                <div className="relative z-10">
-                  {/* Icon */}
-                  <motion.div
-                    whileHover={{ scale: 1.2, rotate: [0, -5, 5, 0] }}
-                    transition={{ duration: 0.5 }}
-                    className="text-6xl mb-6 filter drop-shadow-lg"
-                  >
-                    {feature.icon}
-                  </motion.div>
+                <div className={`relative h-full bg-white/70 backdrop-blur-xl border border-slate-200/60 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 ${getAccentClasses(feature.accent)}`}>
+                  {/* Gradient Overlay */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-5 rounded-3xl transition-all duration-500`} />
+                  
+                  {/* Content */}
+                  <div className="relative z-10">
+                    {/* Icon */}
+                    <motion.div
+                      whileHover={{ 
+                        scale: 1.15,
+                        rotateY: 15,
+                        transition: { duration: 0.3 }
+                      }}
+                      className="text-6xl mb-6 filter drop-shadow-lg"
+                    >
+                      {feature.icon}
+                    </motion.div>
 
-                  {/* Title */}
-                  <h3 className="text-2xl md:text-3xl font-bold text-slate-800 mb-4 group-hover:bg-gradient-to-r group-hover:from-slate-800 group-hover:to-slate-600 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
-                    {feature.title}
-                  </h3>
+                    {/* Title */}
+                    <h4 className="text-2xl font-bold text-slate-800 mb-4 group-hover:bg-gradient-to-r group-hover:from-slate-800 group-hover:to-slate-600 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
+                      {feature.title}
+                    </h4>
 
-                  {/* Description */}
-                  <p className="text-slate-600 group-hover:text-slate-700 leading-relaxed transition-all duration-300 text-lg">
-                    {feature.description}
-                  </p>
+                    {/* Description */}
+                    <p className="text-slate-600 text-base leading-relaxed mb-8 line-height-loose">
+                      {feature.description}
+                    </p>
 
-                  {/* Arrow */}
-                  <motion.div
-                    initial={{ x: -10, opacity: 0 }}
-                    whileHover={{ x: 0, opacity: 1 }}
-                    className="absolute top-8 right-8 text-slate-400 group-hover:text-slate-600 transition-all duration-300"
-                  >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7v10" />
-                    </svg>
-                  </motion.div>
+                    {/* Launch CTA */}
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center text-slate-500 group-hover:text-slate-700 transition-all duration-300">
+                        <span className="font-semibold mr-3">Launch App</span>
+                        <motion.div
+                          whileHover={{ x: 4, scale: 1.1 }}
+                          transition={{ duration: 0.2 }}
+                          className="w-8 h-8 rounded-full bg-slate-100 group-hover:bg-slate-200 flex items-center justify-center transition-all duration-300"
+                        >
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7v10" />
+                          </svg>
+                        </motion.div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </motion.a>
             ))}
-          </motion.div>
+          </div>
         </div>
+
+        {/* Bottom CTA */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2.5 }}
+          className="text-center pb-16"
+        >
+          <motion.div
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 3, repeat: Infinity }}
+            className="inline-block text-slate-400 hover:text-slate-600 transition-colors cursor-pointer"
+          >
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </motion.div>
+        </motion.div>
       </motion.div>
     </div>
   );
