@@ -76,6 +76,14 @@ const TeamTrackrHero = () => {
       gradient: "from-emerald-600 to-teal-600",
       delay: 0.3,
       href: "https://team-trackr-sharing.vercel.app/"
+    },
+    {
+      title: "Video Connect",
+      description: "Crystal-clear video conferencing with real-time collaboration and AI transcription",
+      icon: "📹",
+      gradient: "from-pink-600 to-rose-600",
+      delay: 0.4,
+      href: "https://team-trackr-video.vercel.app/"
     }
   ];
 
@@ -147,6 +155,25 @@ const TeamTrackrHero = () => {
             delay: 4
           }}
         />
+
+        {/* Additional floating orb for the new feature */}
+        <motion.div
+          style={{
+            x: mousePosition.x * -0.02,
+            y: mousePosition.y * 0.025,
+          }}
+          className="absolute top-40 right-40 w-64 h-64 bg-gradient-to-r from-pink-300/30 to-rose-300/30 rounded-full blur-3xl"
+          animate={{
+            scale: [1.1, 1, 1.1],
+            opacity: [0.4, 0.7, 0.4],
+          }}
+          transition={{
+            duration: 7,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1
+          }}
+        />
       </div>
 
       {/* Main Content */}
@@ -204,36 +231,12 @@ const TeamTrackrHero = () => {
               Experience the next evolution of teamwork with our intelligent suite of tools 
               that adapt to your workflow and amplify your team's potential.
             </motion.p>
-
-            {/* <motion.div
-              variants={heroVariants}
-              className="flex flex-col sm:flex-row gap-6 justify-center items-center"
-            >
-              <motion.button
-                whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(99, 102, 241, 0.4)" }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-semibold rounded-full shadow-2xl transition-all duration-300"
-              >
-                Start Your Journey
-              </motion.button>
-              
-              <motion.button
-                whileHover={{ scale: 1.05, backgroundColor: "rgba(255, 255, 255, 0.8)", borderColor: "rgba(148, 163, 184, 0.3)" }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 border border-slate-200 text-slate-700 font-semibold rounded-full backdrop-blur-sm transition-all duration-300 flex items-center gap-2"
-              >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-                </svg>
-                Watch Demo
-              </motion.button>
-            </motion.div> */}
           </motion.div>
 
           {/* Feature Cards */}
           <motion.div
             variants={containerVariants}
-            className="grid grid-cols-1 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
           >
             {features.map((feature, index) => (
               <motion.a
@@ -289,38 +292,6 @@ const TeamTrackrHero = () => {
               </motion.a>
             ))}
           </motion.div>
-
-          {/* Stats Section */}
-          {/* <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1.5 }}
-            className="mt-32 text-center"
-          >
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-              {[
-                { value: "50K+", label: "Active Teams" },
-                { value: "99.9%", label: "Uptime" },
-                { value: "150+", label: "Countries" },
-                { value: "24/7", label: "Support" }
-              ].map((stat, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 1.7 + index * 0.1 }}
-                  className="text-center"
-                >
-                  <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent mb-2">
-                    {stat.value}
-                  </div>
-                  <div className="text-slate-500 text-sm uppercase tracking-wider">
-                    {stat.label}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div> */}
         </div>
       </motion.div>
     </div>
